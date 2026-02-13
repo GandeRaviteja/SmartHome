@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import ProductCard from "@/components/ProductCard";
+import EditableText from "@/components/EditableText";
 import { products, categories } from "@/data/products";
 
 const Products = () => {
@@ -17,10 +17,8 @@ const Products = () => {
       {/* Header */}
       <section className="bg-hero py-16">
         <div className="container mx-auto px-4 lg:px-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-primary-foreground">Product Catalogue</h1>
-          <p className="mt-3 text-primary-foreground/70">
-            Explore our complete range of smart home devices.
-          </p>
+          <EditableText as="h1" className="text-3xl md:text-4xl font-bold text-primary-foreground" defaultValue="Product Catalogue" />
+          <EditableText as="p" className="mt-3 text-primary-foreground/70" defaultValue="Explore our complete range of smart home devices." />
         </div>
       </section>
 

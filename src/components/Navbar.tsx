@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useCallback } from "react";
+import { Menu, X, Pencil, PencilOff, Download } from "lucide-react";
+import { useEditMode } from "@/contexts/EditContext";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -12,9 +13,14 @@ const navLinks = [
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { isEditMode, toggleEditMode } = useEditMode();
+
+  const handleDownload = useCallback(() => {
+    window.print();
+  }, []);
 
   return (
-    <nav className="sticky top-0 z-50 bg-nav backdrop-blur-md border-b border-nav/10">
+    <nav className="sticky top-0 z-50 bg-nav backdrop-blur-md border-b border-nav/10 print:hidden">
       <div className="container mx-auto flex items-center justify-between h-16 px-4 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
@@ -36,6 +42,30 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
+        </div>
+
+        {/* Edit & Download buttons */}
+        <div className="hidden md:flex items-center gap-2">
+          <button
+            onClick={toggleEditMode}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+              isEditMode
+                ? "bg-accent text-accent-foreground"
+                : "border border-nav-foreground/20 text-nav-foreground/80 hover:bg-nav-foreground/10"
+            }`}
+            title={isEditMode ? "Exit edit mode" : "Enter edit mode"}
+          >
+            {isEditMode ? <PencilOff size={14} /> : <Pencil size={14} />}
+            {isEditMode ? "Done" : "Edit"}
+          </button>
+          <button
+            onClick={handleDownload}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border border-nav-foreground/20 text-nav-foreground/80 hover:bg-nav-foreground/10 transition-colors"
+            title="Download as PDF"
+          >
+            <Download size={14} />
+            Download
+          </button>
         </div>
 
         {/* Mobile toggle */}
@@ -64,6 +94,26 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
+            <div className="flex gap-2 pt-2 border-t border-nav-foreground/10">
+              <button
+                onClick={toggleEditMode}
+                className={`flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
+                  isEditMode
+                    ? "bg-accent text-accent-foreground"
+                    : "border border-nav-foreground/20 text-nav-foreground/80"
+                }`}
+              >
+                {isEditMode ? <PencilOff size={14} /> : <Pencil size={14} />}
+                {isEditMode ? "Done" : "Edit"}
+              </button>
+              <button
+                onClick={handleDownload}
+                className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border border-nav-foreground/20 text-nav-foreground/80"
+              >
+                <Download size={14} />
+                Download
+              </button>
+            </div>
           </div>
         </div>
       )}
