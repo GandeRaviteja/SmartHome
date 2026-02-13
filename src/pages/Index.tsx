@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Shield, Lightbulb, Cpu, Thermometer, CheckCircle, ArrowRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import ProductCard from "@/components/ProductCard";
+import EditableText from "@/components/EditableText";
 import { products, categories } from "@/data/products";
 import heroBg from "@/assets/hero-bg.jpg";
 
@@ -26,14 +27,16 @@ const Index = () => {
         />
         <div className="relative container mx-auto px-4 lg:px-8 py-24">
           <div className="max-w-2xl animate-fade-in-up">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground leading-tight">
-              Control Your Home,{" "}
-              <span className="text-gradient">Anytime, Anywhere.</span>
-            </h1>
-            <p className="mt-6 text-lg text-primary-foreground/80 leading-relaxed max-w-lg">
-              Discover premium smart home devices designed for modern living.
-              IntelliHome Devices brings intelligence to every corner of your home.
-            </p>
+            <EditableText
+              as="h1"
+              className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground leading-tight"
+              defaultValue="Control Your Home, Anytime, Anywhere."
+            />
+            <EditableText
+              as="p"
+              className="mt-6 text-lg text-primary-foreground/80 leading-relaxed max-w-lg"
+              defaultValue="Discover premium smart home devices designed for modern living. IntelliHome Devices brings intelligence to every corner of your home."
+            />
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 to="/products"
@@ -56,10 +59,12 @@ const Index = () => {
       <section className="py-20 bg-section-alt">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground">Product Categories</h2>
-            <p className="mt-3 text-muted-foreground max-w-md mx-auto">
-              Explore our range of smart home solutions across four key categories.
-            </p>
+            <EditableText as="h2" className="text-3xl font-bold text-foreground" defaultValue="Product Categories" />
+            <EditableText
+              as="p"
+              className="mt-3 text-muted-foreground max-w-md mx-auto"
+              defaultValue="Explore our range of smart home solutions across four key categories."
+            />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((cat) => (
@@ -83,8 +88,8 @@ const Index = () => {
       <section className="py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground">Featured Products</h2>
-            <p className="mt-3 text-muted-foreground">Our most popular smart home devices.</p>
+            <EditableText as="h2" className="text-3xl font-bold text-foreground" defaultValue="Featured Products" />
+            <EditableText as="p" className="mt-3 text-muted-foreground" defaultValue="Our most popular smart home devices." />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredProducts.map((product) => (
@@ -106,7 +111,7 @@ const Index = () => {
       <section className="py-20 bg-section-alt">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground">Why Choose IntelliHome?</h2>
+            <EditableText as="h2" className="text-3xl font-bold text-foreground" defaultValue="Why Choose IntelliHome?" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
@@ -120,8 +125,8 @@ const Index = () => {
               <div key={item.title} className="flex gap-4">
                 <CheckCircle size={24} className="text-accent flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-semibold text-foreground">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
+                  <EditableText as="h3" className="font-semibold text-foreground" defaultValue={item.title} />
+                  <EditableText as="p" className="text-sm text-muted-foreground mt-1" defaultValue={item.desc} />
                 </div>
               </div>
             ))}
@@ -132,10 +137,12 @@ const Index = () => {
       {/* CTA */}
       <section className="bg-hero py-20">
         <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-primary-foreground">Ready to Transform Your Home?</h2>
-          <p className="mt-4 text-primary-foreground/70 max-w-md mx-auto">
-            Get in touch with us to learn more about IntelliHome devices and dealer partnerships.
-          </p>
+          <EditableText as="h2" className="text-3xl font-bold text-primary-foreground" defaultValue="Ready to Transform Your Home?" />
+          <EditableText
+            as="p"
+            className="mt-4 text-primary-foreground/70 max-w-md mx-auto"
+            defaultValue="Get in touch with us to learn more about IntelliHome devices and dealer partnerships."
+          />
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 mt-8 bg-accent text-accent-foreground px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"

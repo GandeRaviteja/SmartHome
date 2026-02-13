@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Check, Mail } from "lucide-react";
 import Layout from "@/components/Layout";
+import EditableText from "@/components/EditableText";
 import { getProductById } from "@/data/products";
 
 const ProductDetails = () => {
@@ -50,12 +51,16 @@ const ProductDetails = () => {
               <span className="text-xs font-semibold text-accent uppercase tracking-wider">
                 {product.category}
               </span>
-              <h1 className="text-3xl md:text-4xl font-bold text-foreground mt-2">
-                {product.name}
-              </h1>
-              <p className="mt-4 text-muted-foreground leading-relaxed">
-                {product.fullDescription}
-              </p>
+              <EditableText
+                as="h1"
+                className="text-3xl md:text-4xl font-bold text-foreground mt-2"
+                defaultValue={product.name}
+              />
+              <EditableText
+                as="p"
+                className="mt-4 text-muted-foreground leading-relaxed"
+                defaultValue={product.fullDescription}
+              />
 
               {/* Features */}
               <div className="mt-8">
@@ -64,7 +69,7 @@ const ProductDetails = () => {
                   {product.features.map((feature) => (
                     <div key={feature} className="flex items-start gap-2">
                       <Check size={16} className="text-accent mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-muted-foreground">{feature}</span>
+                      <EditableText as="span" className="text-sm text-muted-foreground" defaultValue={feature} />
                     </div>
                   ))}
                 </div>
@@ -90,8 +95,12 @@ const ProductDetails = () => {
                 <tbody>
                   {Object.entries(product.specifications).map(([key, value], i) => (
                     <tr key={key} className={i % 2 === 0 ? "bg-secondary/50" : ""}>
-                      <td className="px-6 py-4 text-sm font-medium text-foreground w-1/3">{key}</td>
-                      <td className="px-6 py-4 text-sm text-muted-foreground">{value}</td>
+                      <td className="px-6 py-4 text-sm font-medium text-foreground w-1/3">
+                        <EditableText as="span" defaultValue={key} />
+                      </td>
+                      <td className="px-6 py-4 text-sm text-muted-foreground">
+                        <EditableText as="span" defaultValue={value} />
+                      </td>
                     </tr>
                   ))}
                 </tbody>
