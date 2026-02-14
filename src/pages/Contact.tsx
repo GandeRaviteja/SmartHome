@@ -43,8 +43,8 @@ const Contact = () => {
               <div className="space-y-5">
                 {[
                   { icon: <Mail size={18} />, label: "Email", value: "info@intellihome.com" },
-                  { icon: <Phone size={18} />, label: "Phone", value: "+1 (800) 555-HOME" },
-                  { icon: <MapPin size={18} />, label: "Address", value: "123 Innovation Drive, San Francisco, CA 94105" },
+                  { icon: <Phone size={18} />, label: "Phone", value: "+91 98765 43210" },
+                  { icon: <MapPin size={18} />, label: "Address", value: "Hyderabad, Telangana, India" },
                 ].map((item) => (
                   <div key={item.label} className="flex gap-3">
                     <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
